@@ -4,16 +4,16 @@ Dividi in due array separati le zucchine che misurano meno o più di 15cm. Infin
 
 // Creo array con 10 diversi oggetti, differenziati per varietà, peso e lunghezza
 var cestoZucchine = [
-    { varietà : 'Nera di Milano', peso : 0, lunghezza : 0},
-    { varietà : 'Romanesca', peso : 0, lunghezza : 0},
-    { varietà : 'Lunga Fiorentina', peso : 0, lunghezza : 0},
-    { varietà : 'Ortolana di Faenza', peso : 0, lunghezza : 0},
-    { varietà : 'Siciliana', peso : 0, lunghezza : 0},
-    { varietà : 'Striata di Napoli', peso : 0, lunghezza : 0},
-    { varietà : 'Bianca Triestina', peso : 0, lunghezza : 0},
-    { varietà : 'Rigata Pugliese', peso : 0, lunghezza : 0},
-    { varietà : 'Tonda di Nizza', peso : 0, lunghezza : 0},
-    { varietà : 'Gialla', peso : 0, lunghezza : 0},
+    { varieta: 'Nera di Milano', peso : 0, lunghezza : 0},
+    { varieta: 'Romanesca', peso : 0, lunghezza : 0},
+    { varieta: 'Lunga Fiorentina', peso : 0, lunghezza : 0},
+    { varieta: 'Ortolana di Faenza', peso : 0, lunghezza : 0},
+    { varieta: 'Siciliana', peso : 0, lunghezza : 0},
+    { varieta: 'Striata di Napoli', peso : 0, lunghezza : 0},
+    { varieta: 'Bianca Triestina', peso : 0, lunghezza : 0},
+    { varieta: 'Rigata Pugliese', peso : 0, lunghezza : 0},
+    { varieta: 'Tonda di Nizza', peso : 0, lunghezza : 0},
+    { varieta: 'Gialla', peso : 0, lunghezza : 0}
 ];
 
 // Creo due array dove verranno divise le zucchine del cesto generale per lunghezza, e due variabili relative al peso delle zucchine per ognuno dei due cesti 
@@ -29,30 +29,21 @@ for (var i = 0; i < cestoZucchine.length; i++) {
     var lunghezza = generaRandom(5, 35);
 
     cestoZucchine[i].peso = peso;
-    
     cestoZucchine[i].lunghezza = lunghezza;
-    
+
     if (cestoZucchine[i].lunghezza <= 15) {
-        cestoZucchinePiccole.push(cestoZucchine[i].peso);
+        cestoZucchinePiccole.push(cestoZucchine[i]);
+        pesoZucchinePiccole += cestoZucchine[i].peso;
     } else {
-        cestoZucchineGrandi.push(cestoZucchine[i].peso);
+        cestoZucchineGrandi.push(cestoZucchine[i]);
+        pesoZucchineGrandi += cestoZucchine[i].peso;
     }
     
 }
 
 console.log(cestoZucchine);
-console.log(`Cesto Zucchine piccole: ${cestoZucchinePiccole}`);
-console.log(`Cesto Zucchine Grandi: ${cestoZucchineGrandi}`);
-
-// Sommo elementi all'interno dell'array per ricavare il peso delle zucchine piccole
-for (var i = 0; i < cestoZucchinePiccole.length; i++) {
-    pesoZucchinePiccole += parseInt(cestoZucchinePiccole[i]);
-}
-
-// Sommo elementi all'interno dell'array per ricavare il peso delle zucchine grandi
-for (var i = 0; i < cestoZucchineGrandi.length; i++) {
-    pesoZucchineGrandi += parseInt(cestoZucchineGrandi[i]);
-}
+console.log('Cesto Zucchine Piccole', cestoZucchinePiccole);
+console.log('Cesto Zucchine Grandi', cestoZucchineGrandi);
 
 console.log(`Il peso delle zucchine Piccole è di: ${pesoZucchinePiccole / 1000} kg`);
 console.log(`Il peso delle zucchine Grandi è di: ${pesoZucchineGrandi / 1000} kg`);
@@ -62,13 +53,3 @@ console.log(`Il peso delle zucchine Grandi è di: ${pesoZucchineGrandi / 1000} k
 function generaRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
-
-/* function sommaPesi(arr1, sum) {
-
-    var sum = 0;
-    for (var i = 0; i < arr1.length; i++) {
-        sum += parseInt(i);
-    }
-
-    return sum;
-} */
