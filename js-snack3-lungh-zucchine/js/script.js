@@ -22,7 +22,7 @@ var cestoZucchineGrandi = [];
 var pesoZucchinePiccole = 0;
 var pesoZucchineGrandi = 0;
 
-// Assegno un numero random per ricavare peso e lunghezza di ognuna delle varietà di zucchine presenti nell'array e per ogni ciclo sommo i pesi delle zucchine
+// Assegno un numero random per ricavare peso e lunghezza di ognuna delle varietà di zucchine presenti nell'array ed in base alla lunghezza di ogi varietà di zucchina pusho il relativo peso all'interno di uno specifico array
 for (var i = 0; i < cestoZucchine.length; i++) {
 
     var peso = generaRandom(50, 900);
@@ -33,9 +33,9 @@ for (var i = 0; i < cestoZucchine.length; i++) {
     cestoZucchine[i].lunghezza = lunghezza;
     
     if (cestoZucchine[i].lunghezza <= 15) {
-        cestoZucchinePiccole.push(cestoZucchine[i]);
+        cestoZucchinePiccole.push(cestoZucchine[i].peso);
     } else {
-        cestoZucchineGrandi.push(cestoZucchine[i]);
+        cestoZucchineGrandi.push(cestoZucchine[i].peso);
     }
     
 }
@@ -44,8 +44,18 @@ console.log(cestoZucchine);
 console.log(`Cesto Zucchine piccole: ${cestoZucchinePiccole}`);
 console.log(`Cesto Zucchine Grandi: ${cestoZucchineGrandi}`);
 
-/* console.log(`Il peso delle zucchine Piccole è di: ${pesoZucchinePiccole} gr`);
-console.log(`Il peso delle zucchine Grandi è di: ${pesoZucchinePiccole} gr`); */
+// Sommo elementi all'interno dell'array per ricavare il peso delle zucchine piccole
+for (var i = 0; i < cestoZucchinePiccole.length; i++) {
+    pesoZucchinePiccole += parseInt(cestoZucchinePiccole[i]);
+}
+
+// Sommo elementi all'interno dell'array per ricavare il peso delle zucchine grandi
+for (var i = 0; i < cestoZucchineGrandi.length; i++) {
+    pesoZucchineGrandi += parseInt(cestoZucchineGrandi[i]);
+}
+
+console.log(`Il peso delle zucchine Piccole è di: ${pesoZucchinePiccole / 1000} kg`);
+console.log(`Il peso delle zucchine Grandi è di: ${pesoZucchineGrandi / 1000} kg`);
 
 
 // - Funzioni -
@@ -53,7 +63,7 @@ function generaRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
-/* function sommaPesi(arr1) {
+/* function sommaPesi(arr1, sum) {
 
     var sum = 0;
     for (var i = 0; i < arr1.length; i++) {
